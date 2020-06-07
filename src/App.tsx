@@ -21,14 +21,14 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import Products from './components/Products';
-import Transportation from './components/Delivery';
-import ProductUpload from './components/ProductUpload';
-import Education from './components/EducatonNavigation';
-import Dashboard from './components/Dashboard';
-import Login from './components/Login';
-import Register from './components/Register';
-import Payments from './components/Payment'
+import Products from './pages/Products';
+import Transportation from './pages/Delivery';
+import ProductUpload from './pages/ProductUpload';
+import Education from './pages/EducatonNavigation';
+import Dashboard from './pages/Dashboard';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Payments from './pages/Payment'
 
 
 const App: React.FC = () => (

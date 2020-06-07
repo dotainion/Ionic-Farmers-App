@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './StyleSheet.css';
+import '../components/StyleSheet.css'
 import { IonPage, IonContent, IonItem, IonList, IonImg, IonThumbnail, IonCard, IonCardContent, IonGrid, IonRow, IonCol, IonIcon, IonInput, IonSelect, IonSelectOption, IonInfiniteScroll, IonInfiniteScrollContent, IonButton, IonSpinner, IonToast, IonToolbar, IonFooter, IonLabel, IonModal, IonTitle, IonAlert, IonPopover } from '@ionic/react';
-import AllWidgets from '../pages/Widgets';
+import AllWidgets from '../components/Widgets';
 import Tools from '../components/FunctonTools'
 import axios from 'axios';
 import { search, close, home, notifications, grid, ellipsisVertical, arrowBackCircle, arrowBack, eye } from 'ionicons/icons';

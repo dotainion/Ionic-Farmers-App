@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './StyleSheet.css';
+import '../components/StyleSheet.css'
 import { IonPage, IonContent, IonImg, IonThumbnail, IonList, IonLabel, IonItemDivider, IonCard } from '@ionic/react';
-import AllWidgets from '../pages/Widgets'
+import AllWidgets from '../components/Widgets'
 
 
 //var Widget = new AllWidgets();

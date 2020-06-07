@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import './StyleSheet.css';
+import '../components/StyleSheet.css'
 import { IonPage, IonContent, IonButton, IonItem, IonIcon, IonLabel, IonToolbar, IonImg, IonThumbnail } from '@ionic/react';
-import Widgets from '../pages/Widgets';
+import Widgets from '../components/Widgets';
 import { notifications, home, grid } from 'ionicons/icons';
 import axios from 'axios'
-import tools from './FunctonTools';
+import tools from '../components/FunctonTools';
 
 var Widget = new Widgets()
 class Transportation extends Component{

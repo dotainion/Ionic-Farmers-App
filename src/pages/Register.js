@@ -1,7 +1,7 @@
 import { IonContent, IonPage, IonToolbar, IonButton, IonItem, IonLabel, IonInput, IonTitle, IonIcon, IonToast } from '@ionic/react';
 import React, { Component } from 'react';
 import axios from 'axios'
-import tools from './FunctonTools'
+import tools from '../components/FunctonTools'
 import { grid } from 'ionicons/icons';
 
 

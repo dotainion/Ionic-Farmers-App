@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './StyleSheet.css';
+import '../components/StyleSheet.css'
 import { IonPage, IonContent, IonButton, IonItem, IonImg, IonThumbnail, IonList, IonLabel, IonInput, IonSelect, IonSelectOption, IonToast } from '@ionic/react';
-import Widgets from '../pages/Widgets'
+import Widgets from '../components/Widgets'
 import tools from '../components/FunctonTools'
 import axios from 'axios'
 

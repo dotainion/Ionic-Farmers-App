@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { home, notifications, grid, arrowBackCircle, ellipsisVertical, logOut, addCircle, lockClosed, shareSocial, mail, people, newspaper, key, logIn, car, cloudUpload, calculator, cart } from 'ionicons/icons';
 import {  IonToolbar, IonIcon, IonFooter, IonModal, IonContent, IonTitle, IonMenuButton, IonButtons, IonList, IonMenu, IonHeader, IonCard, IonItem, IonRouterOutlet, IonPopover, IonButton } from '@ionic/react';
-import tools from '../components/FunctonTools'
+import tools from './FunctonTools'
 
 
 
