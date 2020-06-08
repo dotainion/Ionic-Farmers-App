@@ -16,6 +16,8 @@ class Tools{
 
         this.appName = "Farmer App";
 
+        this.cartItem = [];//this will hold the cart items
+
         //this is the server username and password, if this password is incorerct then 
         //this app will not get access to server
         this.serverUserName = "user";

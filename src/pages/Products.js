@@ -12,6 +12,10 @@ class Products extends Component{
   constructor(){
     super()
 
+    this.popUpQtyDisplay = "none";//this will display the quantity amount in pop up if its a empty string, it will only display when a item is selected
+    this.temQtyData = "";//this will store the item and other data temparary when user select on a item then choose quantity
+    this.qty = 1;//this will store the quantity of a product then will reset back to 1
+    this.showQtyPopOver = false;//this will open quantity popover to inssert quantity amount
     this.popOverImg = null;//this will hold the image instide the pop over information
     this.showPopOver = false;//this will display pop up with information if its true and close if its false
     this.popOverMsg = "";//this will display the message on popover pop up information
@@ -37,7 +41,7 @@ class Products extends Component{
     this.showToast = false;//this will show the pop up messages for error or information
     this.myRef = React.createRef()
     this.base64Code = Tools.base64;//this will be added to image file with will be a base format so it will be display at image on screen
-    this.cartItem = [];//this will store the items in the cart when user select 
+    this.cartItem = Tools.cartItem;//this will store the items in the cart when user select 
     this.referencs = [];
     this.noAccess = "none";//this will display message if server password is incorrect
     this.state = {//this will hold all date received by the server
@@ -110,7 +114,7 @@ class Products extends Component{
       //and if that send then was click then this state will not be executed
       if (e.color !== "danger"){
         //if the target widget that was press color is equal to red "danger" when its value will be store in this.cartItem
-        this.cartItem.push([post.img,post.title,post.price,post.detail,post.email,e])
+        Tools.cartItem.push([post.img,post.title,post.price,post.detail,post.email,this.qty,e])
         e.color = "danger"
         this.showToast = true;
         var toastAddMsg = post.title+" at "+post.price+" is being added to your cart"
@@ -120,12 +124,13 @@ class Products extends Component{
         //if the target item that was press is not red "danger" when color will be set to white and will be remove 
         //from this.cartItem with its indext value 
         e.color = "white"
-        this.cartItem.pop(index)
+        Tools.cartItem.pop(index)
         this.showToast = true;
         var toastRemoveMsg = post.title+" at "+post.price+" has been removed from your cart"
         this.toastMsg = toastRemoveMsg
         this.setState({showToast:true,toastMsg:toastRemoveMsg})
       }
+      this.cartItem = Tools.cartItem;
     }
   }
 
@@ -215,14 +220,28 @@ class Products extends Component{
         <IonToast color="light" isOpen={this.showToast} onDidDismiss={() => {this.showToast=false;this.setState({showToast:false})}} message={this.toastMsg} duration={2000} position="top"/>
 
         <IonPopover isOpen={this.showPopOver} cssClass='my-custom-class' onDidDismiss={e => {this.showPopOver = false;this.setState({showPopOver:false})}}>
-          <IonImg src={this.popOverImg}/>
+          <IonThumbnail style={{width:"250px",height:"220px"}}>
+            <IonImg src={this.popOverImg}/>
+          </IonThumbnail>
           <div style={{height:"200px"}}>
-            <div style={{textAlign:"center",marginTop:"-150px",overflow:"auto"}}>
-              <h1 style={{color:"darkblue"}}>{this.popOverMsg}</h1>
-              <h1 style={{color:"darkblue"}}>{this.popOverMsg2}</h1>
-              <p style={{color:"darkblue"}}><b>{this.popOverMsg3}</b></p>
+            <div style={{textAlign:"center",marginTop:"-150px",overflow:"auto",color:"red"}}>
+              <h1>{this.popOverMsg}</h1>
+              <h1>{this.popOverMsg2}</h1>
+              <h1 style={{display:this.popUpQtyDisplay}}>{"Qty: "+this.popOverMsg4}</h1>
+              <p><b>{this.popOverMsg3}</b></p>
             </div>
           </div>
+        </IonPopover>
+
+        <IonPopover isOpen={this.showQtyPopOver} cssClass='my-custom-class' onDidDismiss={e => {this.showQtyPopOver = false;this.setState({showQtyPopOver:false})}}>
+          <IonItem>
+            <IonLabel style={{float:"left",width:"100px",fontSize:"15px",marginLeft:"30px"}}>Item quantity</IonLabel>
+            <IonInput style={{float:"right",border:"1px solid #000",height:"20px",marginRight:"30px",borderRadius:"25px"}} type="number" value={this.qty} onIonChange={e=>{this.qty = e.target.value;console.log(this.cartItem)}}/>
+          </IonItem>
+          <IonItem>
+            <IonButton style={{marginLeft:"45px",width:"65px"}} onClick={()=>{this.showQtyPopOver=false;this.setState({showQtyPopOver:false})}}>Cancel</IonButton>
+            <IonButton style={{width:"65px"}} onClick={()=>{this.itemChoiceHandler(document.getElementById(this.temQtyData[0]),this.temQtyData[1],this.temQtyData[2]);this.showQtyPopOver=false;this.setState({showQtyPopOver:false})}}>Okay</IonButton>
+          </IonItem>
         </IonPopover>
 
         <IonCard>
@@ -256,14 +275,17 @@ class Products extends Component{
                 posts.map((post,i) => 
                   <IonCol key={post.id} style={{textAlign:"left"}}>
                     <IonCard style={{margin:"0px",width:"105px"}} id={post.id}>
-                    <IonIcon style={{marginLeft:"80px",marginTop:"10px"}} onClick={e=>{this.popOverMsg=post.title;this.popOverMsg2=post.price;this.popOverMsg3=post.detail;this.showPopOver=true;this.popOverImg=this.base64Code+post.img;this.setState({popOverMsg:this.popOverMsg,popOverMsg2:this.popOverMsg2,popOverMsg3:this.popOverMsg3,showPopOver:true,popOverImg:this.popOverImg})}} icon={ellipsisVertical}/>
-                      <div onClick={() => this.itemChoiceHandler(document.getElementById(post.id),post,i)}>
-                      <IonList>
-                        <IonThumbnail style={{width:"100px",height:"80px"}} slot="start">
-                            <IonImg src={this.base64Code+post.img} />
-                        </IonThumbnail>
-                      </IonList>
-                      <IonCardContent><p style={{whiteSpace:"nowrap",textAlign:"center"}}>{post.title}</p><p style={{whiteSpace:"nowrap",textAlign:"center"}}>{post.price}</p></IonCardContent></div>
+                    <IonIcon style={{marginLeft:"80px",marginTop:"10px"}} onClick={e=>{this.popUpQtyDisplay="none";this.setState({popUpQtyDisplay:"none"});for(var i=0;i<this.cartItem.length;i++){if(this.cartItem[i][0]===post.img){this.popOverMsg4 = this.cartItem[i][5];this.popUpQtyDisplay="";
+                              this.setState({popUpQtyDisplay:"",popOverMsg4:this.popOverMsg4})}};this.popOverMsg=post.title;this.popOverMsg2=post.price;this.popOverMsg3=post.detail;this.showPopOver=true;this.popOverImg=this.base64Code+post.img;
+                              this.setState({popOverMsg:this.popOverMsg,popOverMsg2:this.popOverMsg2,popOverMsg3:this.popOverMsg3,showPopOver:true,popOverImg:this.popOverImg})}} icon={ellipsisVertical}/>
+                      <div onClick={() => {this.temQtyData = [post.id,post,i];this.showQtyPopOver=true;this.setState({showQtyPopOver:true})}}>
+                        <IonList>
+                          <IonThumbnail style={{width:"100px",height:"80px"}} slot="start">
+                              <IonImg src={this.base64Code+post.img} />
+                          </IonThumbnail>
+                        </IonList>
+                        <IonCardContent><p style={{whiteSpace:"nowrap",textAlign:"center"}}>{post.title}</p><p style={{whiteSpace:"nowrap",textAlign:"center"}}>{post.price}</p></IonCardContent>
+                      </div>
                     </IonCard>
                   </IonCol>
                 ): null
@@ -313,7 +335,8 @@ class Products extends Component{
 
                 <IonItem color="warning">
                 <IonLabel color="primary" style={{margin:"10px"}}>ITEMS IN CART</IonLabel>
-                <IonButton routerLink="/payment" style={{margin:"10px"}}>Cash Out</IonButton>
+                <IonButton hidden routerLink="/payment" id="payment"/>
+                <IonButton onClick={()=>{if (this.cartItem.length){document.getElementById("payment").click()}else{this.showToast=true;this.toastMsg="you have no item in cart";this.setState({showToast:true,toastMsg:this.toastMsg})}}} style={{margin:"10px"}}>Cash Out</IonButton>
                 </IonItem>
                   <IonContent style={{border:"inset"}}>
                     {
@@ -321,7 +344,7 @@ class Products extends Component{
                       this.cartItem.map((items,i)=>
                         <IonCard key={i}>
                           <IonItem>
-                            <IonItem onClick={()=> {this.cartDeleteItem = [items[5],i];this.showAlertIonModel=true;this.setState({showAlertIonModel:true})}}>
+                            <IonItem onClick={()=> {this.cartDeleteItem = [items[6],i];this.showAlertIonModel=true;this.setState({showAlertIonModel:true})}}>
                               <IonThumbnail>
                                 <IonImg src={this.base64Code+items[0]}/>
                               </IonThumbnail>
@@ -329,7 +352,7 @@ class Products extends Component{
                               <IonLabel>{items[2]}</IonLabel>
                               <IonLabel>{items[3]}</IonLabel>
                             </IonItem>
-                            <IonIcon style={{width:"15px"}} onClick={()=>{this.popOverMsg=items[1];this.popOverMsg2=items[2];this.popOverMsg3=items[3];this.showPopOver = true;this.popOverImg = Tools.base64+items[0]; this.setState({popOverImg:this.popOverImg,popOverMsg:this.popOverMsg,popOverMsg2:this.popOverMsg2,popOverMsg3:this.popOverMsg3,showPopOver:true})}} icon={eye}/>
+                            <IonIcon style={{width:"15px"}} onClick={()=>{this.popOverMsg=items[1];this.popOverMsg2=items[2];this.popOverMsg3=items[3];this.popOverMsg4=items[5];this.showPopOver = true;this.popOverImg = Tools.base64+items[0];this.popUpQtyDisplay=""; this.setState({popOverImg:this.popOverImg,popOverMsg:this.popOverMsg,popOverMsg2:this.popOverMsg2,popOverMsg3:this.popOverMsg3,popOverMsg4:this.popOverMsg4,showPopOver:true,popUpQtyDisplay:""})}} icon={eye}/>
                           </IonItem>
                         </IonCard>
                       ):
