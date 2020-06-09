@@ -26,7 +26,7 @@ class Login extends Component{
         axios.post(tools.url.login,this.credentials)
         .then(response =>{
             if (response.data === true){
-                //for opening 
+                tools.storeCreds(this.userName,this.password);
             }else if (response.data === false){
                 this.toaststate = true;
                 this.toastMsg = "Incorrect username or password";

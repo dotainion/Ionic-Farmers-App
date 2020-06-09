@@ -34,13 +34,32 @@ class Payments extends Component{
         ]
     }
 
-    serverHandler(){
-        axios.post()
-        .then(response =>{
+    dictionarybuilder(){
+        //this function will get items in cart and convert it into a dictionary then return it
+        //only item name, item price, farmers email, and quantity will be extracted
+        var dictionaryHolder = []
+        dictionaryHolder.push({
+            serverusername:tools.serverUserName,
+            serverpassword:tools.serverPassword
+        });
+        for (var i in tools.cartItem){
+            dictionaryHolder.push({
+                productName:tools.cartItem[i][1],
+                price:tools.cartItem[i][2],
+                sellerEmail:tools.cartItem[i][4],
+                qty:tools.cartItem[i][5],
+                buyerEmail:tools.retreiveCreds("email")})
+        }
+        return dictionaryHolder;
+    }
 
+    serverHandler(){
+        axios.post(tools.url.payments,this.dictionarybuilder())
+        .then(response =>{
+            console.log(response.data);
         })
         .catch(error =>{
-            
+            console.log(error)
         })
     }
 
@@ -52,7 +71,16 @@ class Payments extends Component{
         }
     }
 
+    checkPayments(){
+        //this fucntion will check payemnts, email and more before submiting
+        this.serverHandler();
+        this.errorMsgColor = "darkgreen";
+        this.errorMsg = "sucessful";
+        this.setState({errorMsg:this.errorMsg,errorMsgColor:this.errorMsgColor})
+    }
+
     checkCards = (cardType) =>{
+        //this will check the credit card and its digits to see if its invalid
         var cardPass = false;
         if (cardType === "Visa" && this.cardNumber.length === 16){
             cardPass = true;
@@ -74,9 +102,7 @@ class Payments extends Component{
             cardPass = false;
         }
         if (cardPass){
-            this.errorMsgColor = "darkgreen";
-            this.errorMsg = "pass card test";
-            this.setState({errorMsg:this.errorMsg,errorMsgColor:this.errorMsgColor})
+            this.checkPayments();
         }else{
             this.errorMsgColor = "red";
             if (cardType){

@@ -31,12 +31,14 @@ class Tools{
         this.registerRoute = "/sign/up";
         this.productUploadRoute = "/farmers/product/upload";
         this.transportationRoute = "/transportations";
+        this.paymentsRoute = "/buy/payments";
         this.url = {
             products:this.mainUrl+this.productRoute,
             login:this.mainUrl+this.loginRoute,
             register:this.mainUrl+this.registerRoute,
             productupload:this.mainUrl+this.productUploadRoute,
             transportation:this.mainUrl+this.transportationRoute,
+            payments:this.mainUrl+this.paymentsRoute,
         }
 
         //this is the list of products category
@@ -89,9 +91,19 @@ class Tools{
     retreiveCreds(creds){
         //this will retreive username and password
         if (creds === "email"){
-            return window.localStorage.getItem("email");
+            var username = window.localStorage.getItem("email");
+            if (username){
+                return username;
+            }else{
+                return "none";
+            }
         }else if (creds === "password"){
-            return window.localStorage.setItem("password");
+            var password = window.localStorage.setItem("password");
+            if (password){
+                return password;
+            }else{
+                return "none";
+            }
         } 
     }
 };
