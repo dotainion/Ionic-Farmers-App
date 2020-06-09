@@ -12,9 +12,7 @@ class Transportation extends Component{
         super()
         
         this.holdDetails = [];//this will store customer details then submit in popover each time a customer is seleced
-
         this.showDetails = false;//this will show popover to display customer detail information on product
-
         this.costValue = "$";//this will store the input value of cost input and help keep $ in box
 
         //this will hold the information and credentials for posting to the server
