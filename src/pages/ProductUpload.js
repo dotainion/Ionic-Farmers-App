@@ -146,7 +146,7 @@ class Transportation extends Component{
 
                     <IonItem>
                         <IonButton onClick={()=>{tools.takePicture(this.setPhotoAfter)}} style={{width:"100%"}}>Take a Photo</IonButton>
-                        <IonButton onClick={()=>{tools.getGallery()}} style={{width:"100%"}}>Upload a Photo</IonButton>
+                        <IonButton onClick={()=>{tools.getGallery(this.setPhotoAfter)}} style={{width:"100%"}}>Upload a Photo</IonButton>
                     </IonItem>
 
                     <IonList>
@@ -218,14 +218,12 @@ class Transportation extends Component{
                   cssClass: 'secondary',
                   handler: () => {
                     //this will click the button that will open up login page
-                    tools.returnToPage = true;
                     tools.previousPage("upload");
                     document.getElementById("login").click();
                   }}, {
                   text: 'Register',
                   handler: () => {
                     //this will click the button that will open up register page
-                    tools.returnToPage = true;
                     tools.previousPage("upload");
                     document.getElementById("register").click();
                   }}]}/>

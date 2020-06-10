@@ -12,7 +12,7 @@ class Widgets{
     
     HeaderAndMenus(){
         const [showPopover, setShowPopover] = useState(false);
-        const [logOutDisabed, setLogOutDisabed] = useState(false);
+        const [logOutDisabed, setLogOutDisabed] = useState(true);
         const [showToast, setShowToast] = useState(false);
         return (
             <>

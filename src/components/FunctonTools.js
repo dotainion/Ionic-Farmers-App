@@ -73,7 +73,6 @@ class Tools{
         //this function will be call when using the device camera
         //it will take a photo and pass it into the function that was passed in as a parameter
         //so the image can be use.
-        
         const { Camera } = Plugins;
         /*const image = await */Camera.getPhoto({
           quality: 90,
@@ -93,7 +92,10 @@ class Tools{
         console.log(imageUrl.Base64);*/
     }
 
-    async getGallery() {
+    async getGallery(funcCall) {
+        //this function will open up the gallery in the device
+        //amd returns the photo the user chooses adn pass it in 
+        //as parameter that was passed in as function parameter
         const { Camera } = Plugins;
         Camera.getPhoto({
           quality: 90,
@@ -103,7 +105,7 @@ class Tools{
           saveToGallery:false,
           correctOrientation:true,
         }).then(results=>{
-            //funcCall(results.base64String)
+            funcCall(results.base64String)
         }).catch(()=>{});
     }
 

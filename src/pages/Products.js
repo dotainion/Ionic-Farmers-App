@@ -213,7 +213,7 @@ class Products extends Component{
 
   render(){
     const { posts } = this.state;
-    
+
     return (
       <IonPage>
         <Widgets.HeaderAndMenus/>
@@ -342,14 +342,12 @@ class Products extends Component{
                   cssClass: 'secondary',
                   handler: () => {
                     //this will click the button that will open up login page
-                    Tools.returnToPage = true;
                     Tools.previousPage("payment");
                     document.getElementById("login").click();
                   }}, {
                   text: 'Register',
                   handler: () => {
                     //this will click the button that will open up register page
-                    Tools.returnToPage = true;
                     Tools.previousPage("payment");
                     document.getElementById("register").click();
                   }}]}/>
