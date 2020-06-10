@@ -22,6 +22,8 @@ class SingUp extends Component{
         this.password = "";
         this.confirmPassword = "";
 
+        //this is a dictionary of information that will be capture from the user
+        //and send to the server to stored the user information
         this.userInfo = {
             serverUserName:"",
             serverPassword:"",

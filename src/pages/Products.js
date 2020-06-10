@@ -31,7 +31,7 @@ class Products extends Component{
     this.moreIconWidth = "";//will place spinner icon width to a empty string to remove it from the screen or 100% to place it on the screen
     this.moreIconShow = "none";//this is for the bottom loading spinner
     this.topSpinnerShow = "";//this is for the top loading spinner
-    this.dataVar = 40;//this will set the amount of data to receive from teh server at a time
+    this.dataVar = 100;//this will set the amount of data to receive from teh server at a time
     this.getmoreData = 0;//this will be added with this.dataVar every time data is call to pull more data from server
     this.startGetMoreData = true;
     this.networkError = "none"//tis will show network error label to the screen
@@ -253,7 +253,7 @@ class Products extends Component{
               <IonSelectOption>Fruits</IonSelectOption>
               <IonSelectOption>provision</IonSelectOption>
               <IonSelectOption>Vegetables</IonSelectOption>
-              <IonSelectOption>Greens</IonSelectOption>
+              <IonSelectOption>Grains</IonSelectOption>
               <IonSelectOption>Farm Tools</IonSelectOption>
               <IonSelectOption>Animals</IonSelectOption>
               <IonSelectOption>Pets</IonSelectOption>

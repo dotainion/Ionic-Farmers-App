@@ -158,7 +158,7 @@ class Transportation extends Component{
                     <IonItem>
                         <IonLabel>Produt Category</IonLabel>
                         <IonSelect interfaceOptions={()=>{}} interface="popover" placeholder="Select Category"
-                        onIonChange={e => {this.catValue = e.target.value;this.getNameByCategory(e)}} value={this.catValue}>
+                        onIonChange={e => {this.catValue = e.target.value;this.getNameByCategory(e);this.productValue="";this.setState({productValue:""})}} value={this.catValue}>
                         {
                             this.productsCategory ?
                             this.productsCategory.map((category,i)=>
