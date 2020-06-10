@@ -6,7 +6,7 @@ import tools from '../components/FunctonTools'
 import axios from 'axios'
 
 
-//var Widget = new Widgets()
+var Widget = new Widgets()
 class Transportation extends Component{
     constructor(){
         super()
@@ -134,7 +134,6 @@ class Transportation extends Component{
     }
 
     render(){
-        var Widget = new Widgets()
         return (
             <IonPage>
             <Widget.HeaderAndMenus/>

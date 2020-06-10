@@ -6,7 +6,7 @@ import Tools from '../components/FunctonTools'
 import axios from 'axios';
 import { search, close, home, notifications, grid, ellipsisVertical, arrowBackCircle, arrowBack, eye } from 'ionicons/icons';
 
-//var Widgets = new AllWidgets()
+var Widgets = new AllWidgets()
 
 class Products extends Component{
   constructor(){
@@ -213,12 +213,12 @@ class Products extends Component{
 
   render(){
     const { posts } = this.state;
-    var Widgets = new AllWidgets()
+    
     return (
       <IonPage>
         <Widgets.HeaderAndMenus/>
 
-        <IonToast color="light" isOpen={this.showToast} onDidDismiss={() => {this.showToast=false;this.setState({showToast:false})}} message={this.toastMsg} duration={2000} position="top"/>
+        <IonToast color="light" isOpen={this.showToast} onDidDismiss={() => {this.showToast=false;this.setState({showToast:false})}} message={this.toastMsg} duration={1000} position="top"/>
 
         <IonPopover isOpen={this.showPopOver} cssClass='my-custom-class' onDidDismiss={e => {this.showPopOver = false;this.setState({showPopOver:false})}}>
           <IonThumbnail style={{width:"250px",height:"220px"}}>

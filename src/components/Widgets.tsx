@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { home, notifications, grid, arrowBackCircle, ellipsisVertical, logOut, addCircle, lockClosed, shareSocial, mail, people, newspaper, key, logIn, car, cloudUpload, calculator, cart } from 'ionicons/icons';
-import {  IonToolbar, IonIcon, IonFooter, IonModal, IonContent, IonTitle, IonMenuButton, IonButtons, IonList, IonMenu, IonHeader, IonCard, IonItem, IonRouterOutlet, IonPopover, IonButton } from '@ionic/react';
+import {  IonToolbar, IonIcon, IonFooter, IonModal, IonContent, IonTitle, IonMenuButton, IonButtons, IonList, IonMenu, IonHeader, IonCard, IonItem, IonRouterOutlet, IonPopover, IonButton, IonToast } from '@ionic/react';
 import tools from './FunctonTools'
 
 
@@ -12,7 +12,8 @@ class Widgets{
     
     HeaderAndMenus(){
         const [showPopover, setShowPopover] = useState(false);
-        
+        const [logOutDisabed, setLogOutDisabed] = useState(false);
+        const [showToast, setShowToast] = useState(false);
         return (
             <>
                 <IonToolbar color="success">
@@ -20,7 +21,14 @@ class Widgets{
                     <IonButtons slot="start">
                         <IonMenuButton autoHide={false} />
                     </IonButtons>
-                    <IonButtons slot="end" onClick={() => setShowPopover(true)}>
+                    <IonButtons slot="end" onClick={() => {
+                            setShowPopover(true);
+                            if (tools.retreiveCreds("email") === "none" && tools.retreiveCreds("password") === "none"){
+                                setLogOutDisabed(true);
+                            }else{
+                                setLogOutDisabed(false);
+                            }
+                        }}>
                         <IonIcon style={{margin:"10px"}} icon={ellipsisVertical} />
                     </IonButtons>
                 </IonToolbar>
@@ -61,7 +69,7 @@ class Widgets{
                     <IonList>
                         <IonItem>
                             <IonIcon icon={calculator}/>
-                            <IonButton onClick={e => {setShowPopover(false);this.reaload(e)}} routerLink="/education" style={{width:"100%"}}>Education</IonButton>
+                            <IonButton onClick={e => {setShowPopover(false);this.reaload(e)}} routerLink="/education" style={{width:"100%"}}>Educational</IonButton>
                         </IonItem>
                         <IonItem>
                             <IonIcon icon={cart}/>
@@ -69,18 +77,21 @@ class Widgets{
                         </IonItem>
                         <IonItem>
                             <IonIcon icon={cloudUpload}/>
-                            <IonButton onClick={e => {setShowPopover(false);this.reaload(e)}} routerLink="/upload" style={{width:"100%"}}>Products Uploads</IonButton>
+                            <IonButton onClick={e => {setShowPopover(false);this.reaload(e)}} routerLink="/upload" style={{width:"100%"}}>Upload Products</IonButton>
                         </IonItem>
                         <IonItem>
                             <IonIcon icon={car}/>
-                            <IonButton onClick={e => {setShowPopover(false);this.reaload(e)}} routerLink="/transportation" style={{width:"100%"}}>Transportation</IonButton>
+                            <IonButton onClick={e => {setShowPopover(false);this.reaload(e)}} routerLink="/transportation" style={{width:"100%"}}>Delivery</IonButton>
                         </IonItem>
                         <IonItem>
                             <IonIcon icon={logOut}/>
-                            <IonButton onClick={e => {setShowPopover(false)}} style={{width:"100%"}}>Logout</IonButton>
+                            <IonButton disabled={logOutDisabed} onClick={e => {setShowPopover(false);tools.logOut();setShowToast(true)}} style={{width:"100%"}}>Logout</IonButton>
                         </IonItem>
                     </IonList>
                 </IonPopover>
+
+                <IonToast isOpen={showToast} position="top" onDidDismiss={()=>{setShowToast(false)}}
+                    message={"You've logged out"} duration={4000}/>
             </>
         
     

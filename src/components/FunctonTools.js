@@ -67,7 +67,6 @@ class Tools{
             "Animals":["goat","Cow","sheep"],
             "Farmers Inventions":["spesify"]
         }
-        console.log(Plugins)
     };
 
     async takePicture(funcCall) {
@@ -131,6 +130,13 @@ class Tools{
                 return "none";
             }
         } 
+    }
+
+    logOut(){
+        //this will remove username and password from storage
+        //to implement a logout functionality by adding 'none' to it
+        window.localStorage.setItem("email","none");
+        window.localStorage.setItem("password","none");
     }
 
     previousPage(page){

@@ -4,7 +4,7 @@ import { IonPage, IonContent, IonImg, IonThumbnail, IonList, IonLabel, IonItemDi
 import AllWidgets from '../components/Widgets'
 
 
-//var Widget = new AllWidgets();
+var Widget = new AllWidgets();
 class Education extends Component{
     constructor(){
         super()
@@ -32,7 +32,7 @@ class Education extends Component{
     }
 
     render(){
-        var Widget = new AllWidgets();
+        
         return (
             <IonPage>
             <Widget.HeaderAndMenus/>
