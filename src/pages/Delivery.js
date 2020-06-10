@@ -91,7 +91,7 @@ class Transportation extends Component{
             </IonPopover>
 
                 <IonItem color="secondary">
-                <IonLabel style={{textAlign:"center",margin:"10px"}}>Customer Deliveries List</IonLabel>
+                <IonLabel style={{textAlign:"center",margin:"10px"}}>Customer Deliveries</IonLabel>
                 </IonItem>
                 <IonContent style={{border:"inset"}}>
                     {

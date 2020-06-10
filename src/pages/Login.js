@@ -49,7 +49,9 @@ class Login extends Component{
             this.setState({toastMsg:this.toastMsg,toaststate:this.toaststate})
         })
         .catch(error =>{
-            
+            this.toaststate = true;
+            this.toastMsg = "Sorry!! server is down";
+            this.setState({toastMsg:this.toastMsg,toaststate:this.toaststate})
         })
     }
 

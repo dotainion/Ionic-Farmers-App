@@ -83,7 +83,9 @@ class SingUp extends Component{
             }
         })
         .catch(error =>{
-
+            this.toaststate = true;
+            this.toastMsg = "Sorry!! server is down";
+            this.setState({toastMsg:this.toastMsg,toaststate:true});
         })
     }
 
