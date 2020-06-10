@@ -12,6 +12,7 @@ class Products extends Component{
   constructor(){
     super()
 
+    this.showPromptLogin = false;//this will display prompt to alert user to log in or register
     this.popUpQtyDisplay = "none";//this will display the quantity amount in pop up if its a empty string, it will only display when a item is selected
     this.temQtyData = "";//this will store the item and other data temparary when user select on a item then choose quantity
     this.qty = 1;//this will store the quantity of a product then will reset back to 1
@@ -333,10 +334,46 @@ class Products extends Component{
                     this.itemCartHandler(this.cartDeleteItem[0],this.cartDeleteItem[1])
                   }}]}/>
 
+                <IonButton hidden id="login" routerLink="/login"/>
+                <IonButton hidden id="register" routerLink="/register"/>
+                <IonAlert isOpen={this.showPromptLogin} onDidDismiss={() =>{this.showPromptLogin = false;this.setState({showPromptLogin:false})}} cssClass='my-custom-class'
+                  header={'Alert!'} message={'<b>You must first login or register for an account</b>'} buttons={[ {
+                  text: 'Login',
+                  cssClass: 'secondary',
+                  handler: () => {
+                    //this will click the button that will open up login page
+                    Tools.returnToPage = true;
+                    Tools.previousPage("payment");
+                    document.getElementById("login").click();
+                  }}, {
+                  text: 'Register',
+                  handler: () => {
+                    //this will click the button that will open up register page
+                    Tools.returnToPage = true;
+                    Tools.previousPage("payment");
+                    document.getElementById("register").click();
+                  }}]}/>
+
                 <IonItem color="warning">
                 <IonLabel color="primary" style={{margin:"10px"}}>ITEMS IN CART</IonLabel>
                 <IonButton hidden routerLink="/payment" id="payment"/>
-                <IonButton onClick={()=>{if (this.cartItem.length){document.getElementById("payment").click()}else{this.showToast=true;this.toastMsg="you have no item in cart";this.setState({showToast:true,toastMsg:this.toastMsg})}}} style={{margin:"10px"}}>Cash Out</IonButton>
+                <IonButton onClick={()=>{
+                  if (this.cartItem.length){
+                    if (Tools.retreiveCreds("email") !== "none" && Tools.retreiveCreds("password") !== "none"){
+                      //if user email and password is available means they have an accout
+                      //and will be directed to the payment screen
+                      document.getElementById("payment").click()
+                    }else{
+                      //if user email and password not available then 
+                      // they will be prompt to login or register
+                      this.showPromptLogin = true;
+                      this.setState({showPromptLogin:true})
+                    }
+                  }else{
+                    this.showToast=true;
+                    this.toastMsg="you have no item in cart";
+                    this.setState({showToast:true,toastMsg:this.toastMsg})
+                    }}} style={{margin:"10px"}}>Cash Out</IonButton>
                 </IonItem>
                   <IonContent style={{border:"inset"}}>
                     {

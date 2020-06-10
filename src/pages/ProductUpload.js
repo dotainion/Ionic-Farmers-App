@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../components/StyleSheet.css'
-import { IonPage, IonContent, IonButton, IonItem, IonImg, IonThumbnail, IonList, IonLabel, IonInput, IonSelect, IonSelectOption, IonToast } from '@ionic/react';
+import { IonPage, IonContent, IonButton, IonItem, IonImg, IonThumbnail, IonList, IonLabel, IonInput, IonSelect, IonSelectOption, IonToast, IonAlert } from '@ionic/react';
 import Widgets from '../components/Widgets'
 import tools from '../components/FunctonTools'
 import axios from 'axios'
@@ -10,6 +10,9 @@ import axios from 'axios'
 class Transportation extends Component{
     constructor(){
         super()
+
+        this.showPromptLogin = false;//this will display prompt to alert user to log in or register
+
         this.productsList = [];//this will hold a list of products when user select on a product category
         this.productsCategory = tools.productCategory;//store produce category from tools into this.productsCategory
         this.catValue = ""//this will store the selected value from the category list when user select
@@ -39,6 +42,19 @@ class Transportation extends Component{
             descritpion:""
         }
     };
+
+    componentDidMount(){
+        //this will run first when the page is open
+        //if user is not login then will be promted to login or register
+        if (tools.retreiveCreds("email") === "none" && tools.retreiveCreds("password") === "none"){
+            //if user email and password is none then this will be executed
+            //to prompt user to login or register first
+            this.showPromptLogin = true;
+            this.setState({showPromptLogin:true});
+            console.log("testing this ")
+            console.log(this.showPromptLogin)
+        }
+    }
 
     postToServer = () =>{
         //tis will send information to server
@@ -131,7 +147,7 @@ class Transportation extends Component{
 
                     <IonItem>
                         <IonButton onClick={()=>{tools.takePicture(this.setPhotoAfter)}} style={{width:"100%"}}>Take a Photo</IonButton>
-                        <IonButton style={{width:"100%"}}>Upload a Photo</IonButton>
+                        <IonButton onClick={()=>{tools.getGallery()}} style={{width:"100%"}}>Upload a Photo</IonButton>
                     </IonItem>
 
                     <IonList>
@@ -194,6 +210,26 @@ class Transportation extends Component{
 
                 <IonToast isOpen={this.toaststate} position="top" onDidDismiss={()=>{this.toaststate=false;this.setState({toaststate:false})}}
                     message={this.toastMsg} duration={2000}/>
+
+                <IonButton hidden id="login" routerLink="/login"/>
+                <IonButton hidden id="register" routerLink="/register"/>
+                <IonAlert backdropDismiss={false} isOpen={this.showPromptLogin} onDidDismiss={() =>{this.showPromptLogin = false;this.setState({showPromptLogin:false})}} cssClass='my-custom-class'
+                  header={'Alert!'} message={'<b>You must first login or register for an account</b>'} buttons={[ {
+                  text: 'Login',
+                  cssClass: 'secondary',
+                  handler: () => {
+                    //this will click the button that will open up login page
+                    tools.returnToPage = true;
+                    tools.previousPage("upload");
+                    document.getElementById("login").click();
+                  }}, {
+                  text: 'Register',
+                  handler: () => {
+                    //this will click the button that will open up register page
+                    tools.returnToPage = true;
+                    tools.previousPage("upload");
+                    document.getElementById("register").click();
+                  }}]}/>
 
             </IonPage>
         );

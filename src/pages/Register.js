@@ -62,6 +62,18 @@ class SingUp extends Component{
                     password:"",
                     confirmPassword:"",
                 })
+                var page = tools.previousPage("get");
+                if (page !== "none"){
+                    if (page === "upload"){
+                        document.getElementById("upload-page").click();
+                    }else if (page === "payment"){
+                        document.getElementById("payment-page").click();
+                    }else{
+                        document.getElementById("back-to-product-page").click();
+                    }
+                }else{
+                    document.getElementById("back-to-product-page").click();
+                }
             }else if (response.data === false){
                 this.toaststate = true;
                 this.toastMsg = "This email already registered. Please go to login, where you can also recover your password.";
@@ -177,6 +189,10 @@ class SingUp extends Component{
 
                 <IonToast isOpen={this.toaststate} position="top" onDidDismiss={()=>{this.toaststate=false;this.setState({toaststate:false})}}
                 message={this.toastMsg} duration={3000}/>
+
+                <IonButton hidden id="back-to-product-page" routerLink="/products"/>
+                <IonButton hidden id="upload-page" routerLink="/upload"/>
+                <IonButton hidden id="payment-page" routerLink="/payment"/>
 
             </IonContent>
             </IonPage>

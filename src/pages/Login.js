@@ -27,6 +27,18 @@ class Login extends Component{
         .then(response =>{
             if (response.data === true){
                 tools.storeCreds(this.userName,this.password);
+                var page = tools.previousPage("get");
+                if (page !== "none"){
+                    if (page === "upload"){
+                        document.getElementById("upload-page").click();
+                    }else if (page === "payment"){
+                        document.getElementById("payment-page").click();
+                    }else{
+                        document.getElementById("back-to-product-page").click();
+                    }
+                }else{
+                    document.getElementById("back-to-product-page").click();
+                }
             }else if (response.data === false){
                 this.toaststate = true;
                 this.toastMsg = "Incorrect username or password";
@@ -104,6 +116,9 @@ class Login extends Component{
                     <IonToast isOpen={this.toaststate} position="top" onDidDismiss={()=>{this.toaststate=false;this.setState({toaststate:false})}}
                     message={this.toastMsg} duration={2000}/>
                     
+                    <IonButton hidden id="back-to-product-page" routerLink="/products"/>
+                    <IonButton hidden id="upload-page" routerLink="/upload"/>
+                    <IonButton hidden id="payment-page" routerLink="/payment"/>
 
                 </IonContent>
             </IonPage>
