@@ -41,6 +41,8 @@ class SingUp extends Component{
         axios.post(tools.url.register,this.userInfo)
         .then(response =>{
             if (response.data === true){
+                //save password and username when confirmed
+                tools.storeCreds(this.userName,this.password);
                 //remove data from variables once server submits its data successfully
                 this.firstName = "";
                 this.lastName = "";
