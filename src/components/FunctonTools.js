@@ -36,7 +36,7 @@ class Tools{
 
         //this is the server URL and its routes
         //use url.XXX to get url and spesific route combine
-        this.mainUrl = "http://127.0.0.1:80";
+        this.mainUrl = "http://57634eea9455.ngrok.io"//"http://127.0.0.1:80";
         this.productRoute = "/see/products";
         this.loginRoute = "/login";
         this.registerRoute = "/sign/up";
@@ -283,7 +283,16 @@ class Tools{
                 "spesify"
             ]
         }
+        this.storeCartItem();
     };
+
+    storeCartItem(){
+        window.localStorage.setItem("cart",JSON.stringify([1,2,3,4,5,6,7,8,9]));
+    }
+
+    getStoredCartItem(){
+        window.localStorage.getItem("cart");
+    }
 
     async takePicture(funcCall) {
         //this function will be call when using the device camera

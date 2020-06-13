@@ -132,6 +132,7 @@ class Products extends Component{
         this.setState({showToast:true,toastMsg:toastRemoveMsg})
       }
       this.cartItem = Tools.cartItem;
+      this.qty = 1;
     }
   }
 
