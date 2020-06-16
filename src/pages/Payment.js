@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
-import { IonPage, IonContent, IonItem, IonList, IonLabel, IonInput, IonButton, IonToolbar, IonTitle, IonIcon, IonCheckbox, IonSelect, IonSelectOption } from '@ionic/react';
+import { IonPage, IonContent, IonItem, IonList, IonLabel, IonInput, IonButton, IonToolbar, IonTitle, IonIcon, IonCheckbox, IonSelect, IonSelectOption, IonPopover } from '@ionic/react';
 import tools from '../components/FunctonTools'
 import axios from 'axios'
-import {  ellipsisVertical, arrowBack, lockClosed, calendar, mail, card  } from 'ionicons/icons';
+import {  ellipsisVertical, arrowBack, lockClosed, calendar, mail, card, home  } from 'ionicons/icons';
 
 
 
 class Payments extends Component{
     constructor(props){
         super(props)
+
+        this.showPopOver = false;//this will open or close popover
 
         this.errorMsg = "none";
         this.errorMsgColor = "white";
@@ -122,9 +124,19 @@ class Payments extends Component{
                     <IonItem color="primary">
                         <IonIcon onClick={()=>{window.history.back()}} icon={arrowBack}/>
                         <IonTitle>{tools.appName}</IonTitle>
-                        <IonIcon onClick={()=>{}} icon={ellipsisVertical}/>
+                        <IonIcon onClick={()=>{this.showPopOver=true;this.setState({showPopOver:true})}} icon={ellipsisVertical}/>
                     </IonItem>
                 </IonToolbar>
+
+                <IonPopover isOpen={this.showPopOver} cssClass='my-custom-class' onDidDismiss={e => {this.showPopOver = false;this.setState({showPopOver:false})}}>
+                    <IonItem>
+                        <IonIcon icon={home}/>
+                        <IonIcon/>
+                        <IonButton hidden id="home" onClick={()=>{this.showPopOver=false;this.setState({showPopOver:false})}}  routerLink="/products"/>
+                        <IonLabel onClick={()=>{document.getElementById("home").click()}}>Home</IonLabel>
+                    </IonItem>
+                </IonPopover>
+
                 <IonContent>
                 
                 <IonList>

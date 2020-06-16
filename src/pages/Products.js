@@ -299,9 +299,14 @@ class Products extends Component{
                   <IonSpinner style={{display:this.moreIconShow,width:this.moreIconWidth,marginleft:"100%",marginright:"100%"}} name="lines" />
                   <IonButton ref={this.infinitRef} color="secondary" size="small" onClick={()=>{this.moreIconShow="";this.setState({moreBtnDisplay:""});this.moreData()}} style={{marginleft:"100%",display:this.moreBtnDisplay}}>More</IonButton>
                   <IonLabel style={{display:this.noMoreitems}}>No more request for this search</IonLabel>
-                  <IonLabel style={{display:this.networkError}}>Network is down</IonLabel>
+                  <div>
+                    <IonLabel style={{display:this.networkError}}>Network is down</IonLabel>
+                  </div>
+                  <div style={{marginTop:"20px",textDecoration:"underline",color:"blue"}}>
+                    <IonLabel onClick={()=>{if (this.moreIconShow === "none"){this.topSpinnerShow="";this.setState({topSpinnerShow:""})};this.componentDidMount()}} style={{display:this.networkError}}>Retry</IonLabel>
+                  </div>
                   <IonLabel style={{display:this.noAccess,fontSize:"15px"}}>Contact app administrater or check your internet connection</IonLabel>
-                  <IonItem>
+                  <IonItem lines="none">
                     <IonLabel onClick={()=>{this.noAccess = "none";this.topSpinnerShow = "";this.setState({topSpinnerShow:"",noAccess:"none"});this.componentDidMount()}} style={{color:"blue",display:this.noAccess,textAlign:"center"}}>Retry</IonLabel>
                   </IonItem>
                 </IonList>

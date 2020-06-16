@@ -36,7 +36,7 @@ class Tools{
 
         //this is the server URL and its routes
         //use url.XXX to get url and spesific route combine
-        this.mainUrl = "http://57634eea9455.ngrok.io"//"http://127.0.0.1:80";
+        this.mainUrl = "http://127.0.0.1:80";
         this.productRoute = "/see/products";
         this.loginRoute = "/login";
         this.registerRoute = "/sign/up";
@@ -301,7 +301,7 @@ class Tools{
         const { Camera } = Plugins;
         /*const image = await */Camera.getPhoto({
           quality: 90,
-          allowEditing: true,
+          allowEditing: false,
           resultType: CameraResultType.Base64,
           source:CameraSource.Camera,
           saveToGallery:true,
@@ -324,7 +324,7 @@ class Tools{
         const { Camera } = Plugins;
         Camera.getPhoto({
           quality: 90,
-          allowEditing: true,
+          allowEditing: false,
           resultType: CameraResultType.Base64,
           source:CameraSource.Photos,
           saveToGallery:false,
