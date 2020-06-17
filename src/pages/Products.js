@@ -205,8 +205,8 @@ class Products extends Component{
     }
   }
 
-  itemCartHandler(element,i){//this will remove item from the card
-    /*this.itemChoiceHandler(element,"",i)*/
+  itemCartHandler(element,i){
+    //this will remove item from the card
     this.cartItem.splice(i,1);//remove the seleced item from the cart
     element.color = "white";//removed selected color from that item in the product listing page
     this.setState({cartItem:this.cartItem});
