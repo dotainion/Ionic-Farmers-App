@@ -53,9 +53,10 @@ class Widgets{
                         </IonItem>
 
                         <IonButton hidden id="home" routerLink="/home"/>
+                        <IonButton hidden id="upload" routerLink="/upload"/>
 
                         <IonItem onClick={()=>{document.getElementById("home")?.click()}}><IonIcon icon={home} /><IonIcon/>Home</IonItem>
-                        <IonItem><IonIcon icon={addCircle} /><IonIcon/>Add Products</IonItem>
+                        <IonItem onClick={()=>{document.getElementById("upload")?.click()}}><IonIcon icon={addCircle} /><IonIcon/>Add Products</IonItem>
                         <IonItem><IonIcon icon={people} /><IonIcon/>About us</IonItem>
                         <IonItem><IonIcon icon={mail} /><IonIcon/>Contact us</IonItem>
                         <IonItem><IonIcon icon={lockClosed} /><IonIcon/>Policy Privacy</IonItem>
