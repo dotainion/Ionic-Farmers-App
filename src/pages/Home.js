@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import '../components/StyleSheet.css'
-import { IonPage, IonContent, IonButton, IonItem, IonImg, IonThumbnail, IonLabel, IonFooter, IonToolbar, IonAlert, IonIcon, IonList } from '@ionic/react';
+import { IonPage, IonContent, IonButton, IonItem, IonLabel, IonFooter, IonToolbar, IonAlert, IonIcon, IonList } from '@ionic/react';
 import AllWidgets from '../components/Widgets'
 import tools from '../components/FunctonTools'
-import { schoolOutline, cloudUpload, carOutline, cartOutline, logIn, key, keyOutline, logInOutline, cloudUploadOutline } from 'ionicons/icons';
+import { schoolOutline, carOutline, cartOutline, keyOutline, logInOutline, cloudUploadOutline } from 'ionicons/icons';
 
 
 var Widget = new AllWidgets();

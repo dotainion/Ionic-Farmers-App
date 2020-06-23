@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">farmersApp</string>
+    <string name="title_activity_main">farmersApp</string>
+    <string name="package_name">com.farmersApp.cam</string>
+    <string name="custom_url_scheme">com.farmersApp.cam</string>
+</resources>
