@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../components/StyleSheet.css'
-import { IonPage, IonContent, IonLabel, IonFooter, IonToolbar } from '@ionic/react';
+import { IonPage, IonContent, IonLabel, IonFooter, IonToolbar, IonButton } from '@ionic/react';
 import AllWidgets from '../components/Widgets'
 
 
@@ -18,7 +18,21 @@ class Dashboard extends Component{
             <IonPage>
             <Widget.HeaderAndMenus/>
                 <IonContent>
-                   <IonLabel style={{marginLeft:"38%"}}>Dashboard</IonLabel>
+                    <div style={{textAlign:"center",marginTop:"50%"}}>
+                        <IonButton hidden id="home" routerLink="/home"/>
+                        <div>
+                            <IonLabel>Dashboard</IonLabel>
+                        </div>
+                        <div>
+                            <IonLabel>comming soon</IonLabel>
+                        </div>
+                        <div onClick={()=>{
+                            document.getElementById("home").click();
+                        }} style={{marginTop:"10px",color:"blue",textDecoration:"underline"}}>
+                            <IonLabel>Take me home</IonLabel>
+                        </div>
+                    </div>
+                    
                 </IonContent>
                 <IonFooter>
                     <IonToolbar color="primary">

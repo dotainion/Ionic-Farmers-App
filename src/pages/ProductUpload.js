@@ -56,7 +56,6 @@ class Transportation extends Component{
             console.log("testing this ")
             console.log(this.showPromptLogin)
         }
-        this.timer();
     }
 
     postToServer = () =>{

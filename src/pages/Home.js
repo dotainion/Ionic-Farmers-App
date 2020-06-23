@@ -3,7 +3,7 @@ import '../components/StyleSheet.css'
 import { IonPage, IonContent, IonButton, IonItem, IonImg, IonThumbnail, IonLabel, IonFooter, IonToolbar, IonAlert, IonIcon, IonList } from '@ionic/react';
 import AllWidgets from '../components/Widgets'
 import tools from '../components/FunctonTools'
-import { schoolOutline, cloudUpload, carOutline, cartOutline } from 'ionicons/icons';
+import { schoolOutline, cloudUpload, carOutline, cartOutline, logIn, key, keyOutline, logInOutline, cloudUploadOutline } from 'ionicons/icons';
 
 
 var Widget = new AllWidgets();
@@ -13,63 +13,85 @@ class Home extends Component{
         
 
         this.showPromptLogin = false;
+        this.iconBgColor = "OldLace";
+        this.iconFgColor = "black";
     };
 
     render(){
         return (
             <IonPage>
             <Widget.HeaderAndMenus/>
-                <IonContent color="secondary">
-                    <IonThumbnail style={{width:"100%",height:"200px"}}>
-                        <IonImg src="https://image.shutterstock.com/image-vector/dashboard-theme-creative-infographic-city-260nw-752239603.jpg"/>
-                    </IonThumbnail>
-                    <IonItem lines="none" color="secondary">
-                        <IonList style={{width:"42%",margin:"15px"}} onClick={()=>{document.getElementById("education").click()}}>
-                            <IonItem lines="none">
-                                <IonButton id="education" hidden onClick={()=>{Widget.reaload()}} routerLink="/education"/>
-                                <IonIcon icon={schoolOutline} size="large"/>
-                            </IonItem>
-                            <IonItem lines="none">
-                                <IonLabel>Education</IonLabel>
-                            </IonItem>
-                        </IonList>
-                        <IonList style={{width:"42%",margin:"15px"}} onClick={()=>{document.getElementById("products").click()}}>
-                            <IonItem lines="none">
-                                <IonButton id="products" hidden onClick={()=>{Widget.reaload()}} routerLink="/products"/>
-                                <IonIcon icon={cartOutline} size="large"/>
-                            </IonItem>
-                            <IonItem lines="none">
-                                <IonLabel>Products</IonLabel>
-                            </IonItem>
-                        </IonList>
-                    </IonItem>
-                    <IonItem lines="none" color="secondary">
-                        <IonList style={{width:"42%",margin:"15px"}}onClick={()=>{
-                                    if (tools.retreiveCreds("email") === "none" && tools.retreiveCreds("password") === "none"){
-                                        this.showPromptLogin = true;
-                                        this.setState({showPromptLogin:true});
-                                    }else{
-                                        Widget.reaload()
-                                        document.getElementById("upload").click();
-                                    }
-                                    }}>
-                            <IonItem lines="none">
-                                <IonIcon icon={cloudUpload}  size="large"/>
-                            </IonItem>
-                            <IonItem lines="none">
-                                <IonLabel>Upload/Sell</IonLabel>
-                            </IonItem>
-                        </IonList>
-                        <IonList style={{width:"42%",margin:"15px"}} onClick={()=>{document.getElementById("trans").click()}}>
-                            <IonItem lines="none">
-                                <IonButton id="trans" hidden onClick={()=>{Widget.reaload()}} routerLink="/transportation"/>
-                                <IonIcon icon={carOutline} size="large"/>
-                            </IonItem>
-                            <IonItem lines="none">
-                                <IonLabel>Transportation</IonLabel>
-                            </IonItem>
-                        </IonList>
-                    </IonItem>
+                <IonContent>
+                    <div style={{marginTop:"40px"}}>
+                        <IonItem lines="none">
+                            <IonList  style={{margin:"15px",width:"42%",backgroundColor:this.iconBgColor,color:this.iconFgColor}} onClick={()=>{document.getElementById("education").click()}}>
+                                <div lines="none" style={{margin:"15px",textAlign:"center"}}>
+                                    <IonButton id="education" hidden onClick={()=>{Widget.reaload()}} routerLink="/education"/>
+                                    <IonIcon icon={schoolOutline} size="large"/>
+                                </div>
+                                <div lines="none" style={{margin:"15px",textAlign:"center"}}>
+                                    <IonLabel>Education</IonLabel>
+                                </div>
+                            </IonList>
+                            <IonList style={{margin:"15px",width:"42%",backgroundColor:this.iconBgColor,color:this.iconFgColor}} onClick={()=>{document.getElementById("products").click()}}>
+                                <div lines="none" style={{margin:"15px",textAlign:"center"}}>
+                                    <IonButton id="products" hidden onClick={()=>{Widget.reaload()}} routerLink="/products"/>
+                                    <IonIcon icon={cartOutline} size="large"/>
+                                </div>
+                                <div lines="none" style={{margin:"15px",textAlign:"center"}}>
+                                    <IonLabel>Products</IonLabel>
+                                </div>
+                            </IonList>
+                        </IonItem>
+                        <IonItem lines="none">
+                            <IonList style={{margin:"15px",width:"42%",backgroundColor:this.iconBgColor,color:this.iconFgColor}} onClick={()=>{
+                                        if (tools.retreiveCreds("email") === "none" && tools.retreiveCreds("password") === "none"){
+                                            this.showPromptLogin = true;
+                                            this.setState({showPromptLogin:true});
+                                        }else{
+                                            Widget.reaload()
+                                            document.getElementById("upload").click();
+                                        }
+                                        }}>
+                                <div lines="none" style={{margin:"15px",textAlign:"center"}}>
+                                    <IonIcon icon={cloudUploadOutline}  size="large"/>
+                                </div>
+                                <div lines="none" style={{margin:"15px",textAlign:"center"}}>
+                                    <IonLabel>Upload/Sell</IonLabel>
+                                </div>
+                            </IonList>
+                            <IonList style={{margin:"15px",width:"42%",backgroundColor:this.iconBgColor,color:this.iconFgColor}} onClick={()=>{document.getElementById("trans").click()}}>
+                                <div lines="none" style={{margin:"15px",textAlign:"center"}}>
+                                    <IonButton id="trans" hidden onClick={()=>{Widget.reaload()}} routerLink="/transportation"/>
+                                    <IonIcon icon={carOutline} size="large"/>
+                                </div>
+                                <div lines="none" style={{margin:"15px",textAlign:"center"}}>
+                                    <IonLabel>Transportation</IonLabel>
+                                </div>
+                            </IonList>
+                        </IonItem>
+                        <IonItem lines="none">
+                            <IonButton hidden id="login" routerLink="/login"/>
+                            <IonButton hidden id="register" routerLink="/register"/>
+                            <IonList style={{margin:"15px",width:"42%",backgroundColor:this.iconBgColor,color:this.iconFgColor}} onClick={()=>{document.getElementById("login").click()}}>
+                                <div lines="none" style={{margin:"15px",textAlign:"center"}}>
+                                    <IonIcon icon={logInOutline}  size="large"/>
+                                </div>
+                                <div lines="none" style={{margin:"15px",textAlign:"center"}}>
+                                    <IonLabel>Login</IonLabel>
+                                </div>
+                            </IonList>
+                            <IonList style={{margin:"15px",width:"42%",backgroundColor:this.iconBgColor,color:this.iconFgColor}} onClick={()=>{document.getElementById("register").click()}}>
+                                <div lines="none" style={{margin:"15px",textAlign:"center"}}>
+                                    <IonButton id="trans" hidden onClick={()=>{Widget.reaload()}} routerLink="/transportation"/>
+                                    <IonIcon icon={keyOutline} size="large"/>
+                                </div>
+                                <div lines="none" style={{margin:"15px",textAlign:"center"}}>
+                                    <IonLabel>Register</IonLabel>
+                                </div>
+                            </IonList>
+                        </IonItem>
+                    </div>
                 </IonContent>
 
                 <IonButton hidden id="login" routerLink="/login"/>
@@ -92,7 +114,7 @@ class Home extends Component{
                   }}]}/>
 
                 <IonFooter>
-                    <IonToolbar color="primary">
+                    <IonToolbar color="success">
                         <div style={{textAlign:"center"}}><IonLabel>Making life great again</IonLabel></div>
                     </IonToolbar>
                 </IonFooter>

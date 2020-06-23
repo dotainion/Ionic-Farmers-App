@@ -51,14 +51,17 @@ class Widgets{
                                 <IonItem onClick={()=>{document.getElementById("register")?.click();}}><IonIcon icon={key} />Register</IonItem>
                             </IonCard>
                         </IonItem>
-                        <IonItem><IonIcon icon={home} /><IonIcon/>Main</IonItem>
+
+                        <IonButton hidden id="home" routerLink="/home"/>
+
+                        <IonItem onClick={()=>{document.getElementById("home")?.click()}}><IonIcon icon={home} /><IonIcon/>Home</IonItem>
                         <IonItem><IonIcon icon={addCircle} /><IonIcon/>Add Products</IonItem>
                         <IonItem><IonIcon icon={people} /><IonIcon/>About us</IonItem>
                         <IonItem><IonIcon icon={mail} /><IonIcon/>Contact us</IonItem>
                         <IonItem><IonIcon icon={lockClosed} /><IonIcon/>Policy Privacy</IonItem>
                         <IonItem><IonIcon icon={newspaper} /><IonIcon/>Terms and conditions</IonItem>
                         <IonItem><IonIcon icon={shareSocial} /><IonIcon/>Share this App</IonItem>
-                        <IonItem><IonIcon icon={logOut} /><IonIcon/>LogOut</IonItem>
+                        <IonItem onClick={()=>{tools.logOut();setShowToast(true)}}><IonIcon icon={logOut} /><IonIcon/>LogOut</IonItem>
                         </IonList>
                     </IonContent>
                 </IonMenu>
