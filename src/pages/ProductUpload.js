@@ -11,7 +11,7 @@ class Transportation extends Component{
     constructor(){
         super()
 
-        this.showPromptLogin = false;//this will display prompt to alert user to log in or register
+        this.showPromptLogin = true;//display popup for login or register prompt
 
         this.productsList = [];//this will hold a list of products when user select on a product category
         this.productsCategory = tools.productCategory;//store produce category from tools into this.productsCategory
@@ -41,6 +41,8 @@ class Transportation extends Component{
             costValue:"",
             descritpion:""
         }
+
+        this.counter = 0;
     };
 
     componentDidMount(){
@@ -54,6 +56,7 @@ class Transportation extends Component{
             console.log("testing this ")
             console.log(this.showPromptLogin)
         }
+        this.timer();
     }
 
     postToServer = () =>{
@@ -212,7 +215,7 @@ class Transportation extends Component{
 
                 <IonButton hidden id="login" routerLink="/login"/>
                 <IonButton hidden id="register" routerLink="/register"/>
-                <IonAlert backdropDismiss={false} isOpen={this.showPromptLogin} onDidDismiss={() =>{this.showPromptLogin = false;this.setState({showPromptLogin:false})}} cssClass='my-custom-class'
+                <IonAlert backdropDismiss={false} isOpen={this.showPromptLogin} onDidDismiss={() =>{this.showPromptLogin = true;this.setState({showPromptLogin:true})}} cssClass='my-custom-class'
                   header={'Alert!'} message={'<b>You must first login or register for an account</b>'} buttons={[ {
                   text: 'Login',
                   cssClass: 'secondary',

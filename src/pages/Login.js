@@ -83,7 +83,7 @@ class Login extends Component{
             <IonPage>
                 <IonToolbar color="primary">
                     <IonItem color="primary">
-                        <IonButton id="home" hidden routerLink="/dashboard"/>
+                        <IonButton id="home" hidden routerLink="/home"/>
                         <IonTitle>{tools.appName}</IonTitle>
                         <IonIcon onClick={()=>{document.getElementById("home").click()}} icon={grid}/>
                     </IonItem>

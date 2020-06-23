@@ -4,7 +4,7 @@ import { IonPage, IonContent, IonItem, IonList, IonImg, IonThumbnail, IonCard, I
 import AllWidgets from '../components/Widgets';
 import Tools from '../components/FunctonTools'
 import axios from 'axios';
-import { search, close, home, notifications, grid, ellipsisVertical, arrowBackCircle, arrowBack, eye } from 'ionicons/icons';
+import { search, close, home, grid, ellipsisVertical, arrowBackCircle, arrowBack, eye, cart } from 'ionicons/icons';
 
 var Widgets = new AllWidgets()
 
@@ -406,16 +406,17 @@ class Products extends Component{
                 <IonToolbar color="success">
                   <IonIcon onClick={()=>{this.showModel=false;this.setState({showModel:false})}} slot="start" icon={arrowBackCircle} style={{width:"100%"}}/>
                   <IonIcon onClick={()=>{}} color="medium" slot="end" icon={grid} style={{width:"100%"}}/>
-                  <IonIcon onClick={()=>{}} color="medium" slot="end" icon={notifications} style={{width:"100%"}}/>
+                  <IonIcon onClick={()=>{}} color="medium" slot="end" icon={cart} style={{width:"100%"}}/>
                 </IonToolbar>
               </IonPage>
             </IonModal>
             <IonFooter>
                 <IonToolbar color="success">
-                  <IonButton hidden id="dashbords" routerLink="/dashboard"/>
-                  <IonIcon onClick={()=>{}} color="medium" slot="start" icon={home} style={{width:"100%"}}/>
-                  <IonIcon onClick={()=>{document.getElementById("dashbords").click()}} slot="end" icon={grid} style={{width:"100%"}}/>
-                  <IonIcon onClick={()=>{this.showModel=true;this.setState({showModel:true})}} slot="end" icon={notifications} style={{width:"100%"}}/>
+                  <IonButton hidden id="home" routerLink="/home"/>
+                  <IonButton hidden id="dashboard" routerLink="/dashboard"/>
+                  <IonIcon onClick={()=>{document.getElementById("home").click()}} slot="start" icon={home} style={{width:"100%"}}/>
+                  <IonIcon onClick={()=>{document.getElementById("dashboard").click()}} slot="end" icon={grid} style={{width:"100%"}}/>
+                  <IonIcon onClick={()=>{this.showModel=true;this.setState({showModel:true})}} slot="end" icon={cart} style={{width:"100%"}}/>
                 </IonToolbar>
             </IonFooter>
       </IonPage>

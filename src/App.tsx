@@ -29,12 +29,15 @@ import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Payments from './pages/Payment'
+import Home from './pages/Home'
 
 
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
+        <Route path="/home" component={Home} exact={true} />
+        <Route exact path="/" render={() => <Redirect to="/home" />} />
         <Route path="/payment" component={Payments} exact={true} />
         <Route exact path="/" render={() => <Redirect to="/payment" />} />
         <Route path="/upload" component={ProductUpload} exact={true} />

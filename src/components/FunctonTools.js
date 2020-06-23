@@ -284,6 +284,7 @@ class Tools{
             ]
         }
         this.storeCartItem();
+        window.localStorage.clear()
     };
 
     storeCartItem(){

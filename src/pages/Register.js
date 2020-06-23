@@ -146,7 +146,7 @@ class SingUp extends Component{
             <IonPage>
             <IonToolbar color="success">
                 <IonItem color="success">
-                    <IonButton id="home" routerLink="/dashboard" hidden/>
+                    <IonButton id="home" routerLink="/home" hidden/>
                     <IonTitle>{tools.appName}</IonTitle>
                     <IonIcon onClick={()=>{document.getElementById("home").click()}} icon={grid}/>
                 </IonItem>
