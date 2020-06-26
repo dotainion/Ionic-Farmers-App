@@ -35,7 +35,7 @@ class Home extends Component{
                         <IonItem lines="none">
                             <IonList  style={{margin:"15px",width:"42%",backgroundColor:this.iconBgColor,color:this.iconFgColor}} onClick={()=>{document.getElementById("education").click()}}>
                                 <div lines="none" style={{margin:"15px",textAlign:"center"}}>
-                                    <IonButton id="education" hidden onClick={()=>{Widget.reaload()}} routerLink="/education"/>
+                                    <IonButton id="education" hidden routerLink="/education"/>
                                     <IonIcon icon={schoolOutline} size="large"/>
                                 </div>
                                 <div lines="none" style={{margin:"15px",textAlign:"center"}}>
@@ -44,7 +44,7 @@ class Home extends Component{
                             </IonList>
                             <IonList style={{margin:"15px",width:"42%",backgroundColor:this.iconBgColor,color:this.iconFgColor}} onClick={()=>{document.getElementById("products").click()}}>
                                 <div lines="none" style={{margin:"15px",textAlign:"center"}}>
-                                    <IonButton id="products" hidden onClick={()=>{Widget.reaload()}} routerLink="/products"/>
+                                    <IonButton id="products" hidden routerLink="/products"/>
                                     <IonIcon icon={cartOutline} size="large"/>
                                 </div>
                                 <div lines="none" style={{margin:"15px",textAlign:"center"}}>
@@ -58,7 +58,6 @@ class Home extends Component{
                                             this.showPromptLogin = true;
                                             this.setState({showPromptLogin:true});
                                         }else{
-                                            Widget.reaload()
                                             document.getElementById("upload").click();
                                         }
                                         }}>
@@ -71,7 +70,7 @@ class Home extends Component{
                             </IonList>
                             <IonList style={{margin:"15px",width:"42%",backgroundColor:this.iconBgColor,color:this.iconFgColor}} onClick={()=>{document.getElementById("trans").click()}}>
                                 <div lines="none" style={{margin:"15px",textAlign:"center"}}>
-                                    <IonButton id="trans" hidden onClick={()=>{Widget.reaload()}} routerLink="/transportation"/>
+                                    <IonButton id="trans" hidden routerLink="/transportation"/>
                                     <IonIcon icon={carOutline} size="large"/>
                                 </div>
                                 <div lines="none" style={{margin:"15px",textAlign:"center"}}>
@@ -92,7 +91,7 @@ class Home extends Component{
                             </IonList>
                             <IonList style={{margin:"15px",width:"42%",backgroundColor:this.iconBgColor,color:this.iconFgColor}} onClick={()=>{document.getElementById("register").click()}}>
                                 <div lines="none" style={{margin:"15px",textAlign:"center"}}>
-                                    <IonButton id="trans" hidden onClick={()=>{Widget.reaload()}} routerLink="/transportation"/>
+                                    <IonButton id="trans" hidden routerLink="/transportation"/>
                                     <IonIcon icon={keyOutline} size="large"/>
                                 </div>
                                 <div lines="none" style={{margin:"15px",textAlign:"center"}}>
