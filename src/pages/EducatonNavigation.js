@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import '../components/StyleSheet.css'
-import { IonPage, IonContent, IonImg, IonThumbnail, IonList, IonLabel, IonItemDivider, IonCard } from '@ionic/react';
+import { withIonLifeCycle, IonPage, IonContent, IonImg, IonThumbnail, IonList, IonLabel, IonItemDivider, IonCard, IonRouterOutlet } from '@ionic/react';
 import AllWidgets from '../components/Widgets'
+import tools from '../components/FunctonTools'
 
 
 var Widget = new AllWidgets();
@@ -13,6 +14,13 @@ class Education extends Component{
         this.slideIndex = 0
         this.slideShow();
     };
+
+    ionViewWillEnter() {
+        //this will set the page name that is open
+        tools.setWindowName("education");
+        tools.previousPage("education");
+        console.log('education is fired')
+    } 
 
     slideShow(){
         var url = "https://www.ilfbpartners.com/wp-content/uploads/2017/09/1490417JSO2920-660x440.jpg";
@@ -53,10 +61,11 @@ class Education extends Component{
                     </IonCard>
                     </IonList>
                 </IonContent>
+                <IonRouterOutlet id="education"></IonRouterOutlet> 
             </IonPage>
         );
     }
 };
 
 
-export default Education;
+export default withIonLifeCycle(Education);

@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import '../components/StyleSheet.css'
-import { IonPage, IonContent, IonItem, IonList, IonImg, IonThumbnail, IonCard, IonCardContent, IonGrid, IonRow, IonCol, IonIcon, IonInput, IonSelect, IonSelectOption, IonInfiniteScroll, IonInfiniteScrollContent, IonButton, IonSpinner, IonToast, IonToolbar, IonFooter, IonLabel, IonModal, IonTitle, IonAlert, IonPopover } from '@ionic/react';
+import { withIonLifeCycle, IonPage, IonContent, IonItem, IonList, IonImg, IonThumbnail, IonCard, IonCardContent, IonGrid, IonRow, IonCol, IonIcon, IonInput, IonSelect, IonSelectOption, IonInfiniteScroll, IonInfiniteScrollContent, IonButton, IonSpinner, IonToast, IonToolbar, IonFooter, IonLabel, IonModal, IonTitle, IonAlert, IonPopover } from '@ionic/react';
 import AllWidgets from '../components/Widgets';
 import Tools from '../components/FunctonTools'
 import axios from 'axios';
 import { search, close, home, grid, ellipsisVertical, arrowBackCircle, arrowBack, eye, cart } from 'ionicons/icons';
 
 var Widgets = new AllWidgets()
-
 class Products extends Component{
   constructor(){
     super()
@@ -104,7 +103,14 @@ class Products extends Component{
   })
 }
 
-  itemChoiceHandler = (e,post,index) => {
+ionViewWillEnter() {
+  //this will set the page name that is open
+  Tools.setWindowName("products");
+  Tools.previousPage("products");
+  console.log('education is fired')
+} 
+
+itemChoiceHandler = (e,post,index) => {
     //this function will be call when user select on a item
     //e will represent the element target the was press
     //post will be the data in the element that was press like title image and detail
@@ -424,5 +430,4 @@ class Products extends Component{
   }
 };
 
-export default Products
-;
+export default withIonLifeCycle(Products);

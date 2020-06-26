@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../components/StyleSheet.css'
-import { IonPage, IonContent, IonButton, IonItem, IonImg, IonThumbnail, IonList, IonLabel, IonInput, IonSelect, IonSelectOption, IonToast, IonAlert } from '@ionic/react';
+import { withIonLifeCycle, IonPage, IonContent, IonButton, IonItem, IonImg, IonThumbnail, IonList, IonLabel, IonInput, IonSelect, IonSelectOption, IonToast, IonAlert } from '@ionic/react';
 import Widgets from '../components/Widgets'
 import tools from '../components/FunctonTools'
 import axios from 'axios'
@@ -45,7 +45,7 @@ class Transportation extends Component{
         this.counter = 0;
     };
 
-    componentDidMount(){
+    ionViewWillEnter(){
         //this will run first when the page is open
         //if user is not login then will be promted to login or register
         if (tools.retreiveCreds("email") === "none" && tools.retreiveCreds("password") === "none"){
@@ -56,6 +56,10 @@ class Transportation extends Component{
             console.log("testing this ")
             console.log(this.showPromptLogin)
         }
+
+        //this will set the page name that is open
+        tools.setWindowName("upload");
+        tools.previousPage("upload")
     }
 
     postToServer = () =>{
@@ -186,24 +190,25 @@ class Transportation extends Component{
                     </IonItem>
 
                     <IonItem>
-                        <IonLabel position="floating">My product not in list</IonLabel>
-                        <IonInput onIonChange={e=>{this.other = e.target.value}} placeholder="Other" value={this.other}></IonInput>
+                        <IonItem style={{marginLeft:"-15px"}}>
+                            <IonLabel position="floating">Product not in list</IonLabel>
+                            <IonInput onIonChange={e=>{this.other = e.target.value}} placeholder="Other" value={this.other}></IonInput>
+                        </IonItem> 
+                        <IonItem>
+                            <IonLabel position="floating">Cost</IonLabel>
+                            <IonInput onIonChange={e=>{this.costValue = e.target.value}} type="number" placeholder="$0.00" value={this.costValue} onChange={()=>{if(this.costValue.length < 1){this.costValue="$";this.setState({costValue:"$"})}}}></IonInput>
+                        </IonItem>
                     </IonItem> 
+
                     <IonItem>
                         <IonLabel position="floating">Pick up Address</IonLabel>
                         <IonInput onIonChange={e=>{this.address = e.target.value}} placeholder="Address" value={this.address}></IonInput>
                     </IonItem>
 
                     <IonItem>
-                        <IonItem>
-                            <IonLabel position="floating">Cost</IonLabel>
-                            <IonInput onIonChange={e=>{this.costValue = e.target.value}} type="number" placeholder="$0.00" value={this.costValue} onChange={()=>{if(this.costValue.length < 1){this.costValue="$";this.setState({costValue:"$"})}}}></IonInput>
-                        </IonItem> 
-                        <IonItem>
-                            <IonLabel position="floating">Description</IonLabel>
-                            <IonInput onIonChange={e=>{this.descritpion = e.target.value}} placeholder="Brief description" value={this.descritpion}></IonInput>
-                        </IonItem>
-                    </IonItem>    
+                        <IonLabel position="floating">Description</IonLabel>
+                        <IonInput onIonChange={e=>{this.descritpion = e.target.value}} placeholder="Brief description" value={this.descritpion}></IonInput>
+                    </IonItem>
 
                     <div style={{textAlign:"center",marginTop:"20px"}}><IonButton onClick={this.submitHandler} shape="round" style={{width:"90%"}}>Submit</IonButton></div>
 
@@ -214,21 +219,23 @@ class Transportation extends Component{
 
                 <IonButton hidden id="login" routerLink="/login"/>
                 <IonButton hidden id="register" routerLink="/register"/>
-                <IonAlert backdropDismiss={false} isOpen={this.showPromptLogin} onDidDismiss={() =>{this.showPromptLogin = true;this.setState({showPromptLogin:true})}} cssClass='my-custom-class'
-                  header={'Alert!'} message={'<b>You must first login or register for an account</b>'} buttons={[ {
-                  text: 'Login',
-                  cssClass: 'secondary',
-                  handler: () => {
-                    //this will click the button that will open up login page
-                    tools.previousPage("upload");
-                    document.getElementById("login").click();
-                  }}, {
-                  text: 'Register',
-                  handler: () => {
-                    //this will click the button that will open up register page
-                    tools.previousPage("upload");
-                    document.getElementById("register").click();
-                  }}]}/>
+                <IonButton hidden id="home" routerLink="/home"/>
+                <IonAlert backdropDismiss={false} isOpen={this.showPromptLogin} onDidDismiss={() =>{this.showPromptLogin = false;this.setState({showPromptLogin:false})}} cssClass='my-custom-class'
+                    header={'Alert!'} message={'<b>You must first login or register for an account</b>'} buttons={[{
+                    text: 'Login',
+                    //cssClass: 'my-custom-class',
+                    handler: () => {
+                        //this will click the button that will open up login page
+                        tools.previousPage("upload");
+                        document.getElementById("login").click();
+                    }}, {
+                    text: 'Register',
+                    handler: () => {
+                        //this will click the button that will open up register page
+                        tools.previousPage("upload");
+                        document.getElementById("register").click();
+                    }}]}/>
+
 
             </IonPage>
         );
@@ -236,4 +243,4 @@ class Transportation extends Component{
 };
 
 
-export default Transportation;
+export default withIonLifeCycle(Transportation);

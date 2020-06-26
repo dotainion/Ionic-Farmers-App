@@ -2,7 +2,7 @@ import { IonContent, IonPage, IonToolbar, IonButton, IonItem, IonLabel, IonInput
 import React, { Component } from 'react';
 import axios from 'axios'
 import tools from '../components/FunctonTools'
-import { grid } from 'ionicons/icons';
+import { home } from 'ionicons/icons';
 
 
 class SingUp extends Component{
@@ -72,11 +72,21 @@ class SingUp extends Component{
                         document.getElementById("upload-page").click();
                     }else if (page === "payment"){
                         document.getElementById("payment-page").click();
+                    }else if (page === "home"){
+                        document.getElementById("home-page").click();
+                    }else if (page === "transportation"){
+                        document.getElementById("transportation-page").click();
+                    }else if (page === "education"){
+                        document.getElementById("education-page").click();
+                    }else if (page === "dashbored"){
+                        document.getElementById("dashbored-page").click();
+                    }else if (page === "dashbored"){
+                        document.getElementById("dashbored-page").click();
                     }else{
-                        document.getElementById("back-to-product-page").click();
+                        document.getElementById("product-page").click();
                     }
                 }else{
-                    document.getElementById("back-to-product-page").click();
+                    document.getElementById("product-page").click();
                 }
             }else if (response.data === false){
                 this.toaststate = true;
@@ -148,7 +158,7 @@ class SingUp extends Component{
                 <IonItem color="success">
                     <IonButton id="home" routerLink="/home" hidden/>
                     <IonTitle>{tools.appName}</IonTitle>
-                    <IonIcon onClick={()=>{document.getElementById("home").click()}} icon={grid}/>
+                    <IonIcon onClick={()=>{document.getElementById("home").click()}} icon={home}/>
                 </IonItem>
             </IonToolbar>
             <IonContent>
@@ -196,9 +206,13 @@ class SingUp extends Component{
                 <IonToast isOpen={this.toaststate} position="top" onDidDismiss={()=>{this.toaststate=false;this.setState({toaststate:false})}}
                 message={this.toastMsg} duration={3000}/>
 
-                <IonButton hidden id="back-to-product-page" routerLink="/products"/>
+                <IonButton hidden id="product-page" routerLink="/products"/>
                 <IonButton hidden id="upload-page" routerLink="/upload"/>
                 <IonButton hidden id="payment-page" routerLink="/payment"/>
+                <IonButton hidden id="home-page" routerLink="/home"/>
+                <IonButton hidden id="education-page" routerLink="/education"/>
+                <IonButton hidden id="dashboard-page" routerLink="/dashboard"/>
+                <IonButton hidden id="transportation-page" routerLink="/transportation"/>
 
             </IonContent>
             </IonPage>

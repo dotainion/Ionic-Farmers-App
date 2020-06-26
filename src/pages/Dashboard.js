@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import '../components/StyleSheet.css'
-import { IonPage, IonContent, IonLabel, IonFooter, IonToolbar, IonButton } from '@ionic/react';
+import { withIonLifeCycle, IonPage, IonContent, IonLabel, IonFooter, IonToolbar, IonButton } from '@ionic/react';
 import AllWidgets from '../components/Widgets'
+import tools from '../components/FunctonTools'
 
 
 var Widget = new AllWidgets();
@@ -13,7 +14,14 @@ class Dashboard extends Component{
         this.showPromptLogin = false;
     };
 
+    ionViewWillEnter(){
+        //this will set the page name that is open
+        tools.setWindowName("dashbored");
+        tools.previousPage("dashbored");
+    }
+
     render(){
+        
         return (
             <IonPage>
             <Widget.HeaderAndMenus/>
@@ -45,4 +53,4 @@ class Dashboard extends Component{
 };
 
 
-export default Dashboard;
+export default withIonLifeCycle(Dashboard);

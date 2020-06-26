@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../components/StyleSheet.css'
-import { IonPage, IonContent, IonButton, IonItem, IonIcon, IonLabel, IonToolbar, IonPopover, IonList, IonCard } from '@ionic/react';
+import { withIonLifeCycle, IonPage, IonContent, IonButton, IonItem, IonIcon, IonLabel, IonToolbar, IonPopover, IonList, IonCard } from '@ionic/react';
 import Widgets from '../components/Widgets';
 import { notifications, home, grid } from 'ionicons/icons';
 import axios from 'axios'
@@ -26,9 +26,13 @@ class Transportation extends Component{
         this.deliveryData = [];
     };
 
-    componentDidMount = () =>{
+    ionViewWillEnter = () =>{
         //this will call serverHandler on first call or when open to get data from server
         this.serverHandler();
+
+        //this will set the page name that is open
+        tools.setWindowName("transportation");
+        tools.previousPage("transportation");
     }
 
     serverHandler = ()=>{
@@ -115,9 +119,9 @@ class Transportation extends Component{
                     <IonButton shape="round" style={{margin:"5px",width:"100%"}}>Google Map</IonButton>
                 </IonItem>
                 <IonToolbar color="success">
-                    <IonButton hidden id="product" routerLink="/products"/>
+                    <IonButton hidden id="home" routerLink="/home"/>
                     <IonButton hidden id="dashboard" routerLink="/dashboard"/>
-                    <IonIcon onClick={()=>{document.getElementById("product").click()}} slot="start" icon={home} style={{width:"100%"}}/>
+                    <IonIcon onClick={()=>{document.getElementById("home").click()}} slot="start" icon={home} style={{width:"100%"}}/>
                     <IonIcon onClick={()=>{document.getElementById("dashboard").click()}} slot="end" icon={grid} style={{width:"100%"}}/>
                     <IonIcon onClick={()=>{}} slot="end" color="medium" icon={notifications} style={{width:"100%"}}/>
                 </IonToolbar>
@@ -127,4 +131,4 @@ class Transportation extends Component{
 };
 
 
-export default Transportation;
+export default withIonLifeCycle(Transportation);

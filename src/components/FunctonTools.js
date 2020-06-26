@@ -19,6 +19,7 @@ or old save code in android folder will be kept
 2: npx cap add android
 3: npx cap open android
 */
+
 class Tools{
     constructor(){
         defineCustomElements(window);//this is to show camera in browser
@@ -36,7 +37,7 @@ class Tools{
 
         //this is the server URL and its routes
         //use url.XXX to get url and spesific route combine
-        this.mainUrl = "http://127.0.0.1:80";
+        this.mainUrl = "http://127.0.0.1";
         this.productRoute = "/see/products";
         this.loginRoute = "/login";
         this.registerRoute = "/sign/up";
@@ -283,12 +284,27 @@ class Tools{
                 "spesify"
             ]
         }
-        this.storeCartItem();
-        window.localStorage.clear()
+        //window.localStorage.clear()
     };
 
-    storeCartItem(){
-        window.localStorage.setItem("cart",JSON.stringify([1,2,3,4,5,6,7,8,9]));
+    navClick = (cmd) => {
+        //this is use by the widgets.tsx file
+        //this will be click when navigating to a page
+        //if the page already is open then nothing will happen
+        //if the page is not open currently then it will be open
+        if(this.setWindowName("get") !== cmd){
+            document.getElementById(cmd).click()
+        }
+    }
+
+    setWindowName(windows){
+        //this will store the name of the current window that is open
+        //if parameter equals to get then stored value will be return
+        if (windows !== "get"){
+            window.localStorage.setItem("currentWindow",windows)
+        }else{
+            return window.localStorage.getItem("currentWindow")
+        }
     }
 
     getStoredCartItem(){

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import '../components/StyleSheet.css'
-import { IonPage, IonContent, IonButton, IonItem, IonLabel, IonFooter, IonToolbar, IonAlert, IonIcon, IonList } from '@ionic/react';
+import { withIonLifeCycle, IonPage, IonContent, IonButton, IonItem, IonLabel, IonFooter, IonToolbar, IonAlert, IonIcon, IonList, IonRouterOutlet } from '@ionic/react';
 import AllWidgets from '../components/Widgets'
 import tools from '../components/FunctonTools'
 import { schoolOutline, carOutline, cartOutline, keyOutline, logInOutline, cloudUploadOutline } from 'ionicons/icons';
+
 
 
 var Widget = new AllWidgets();
@@ -17,7 +18,15 @@ class Home extends Component{
         this.iconFgColor = "black";
     };
 
+    ionViewWillEnter() {
+        //this will set the page when open
+        tools.setWindowName("home");
+        tools.previousPage("home");
+        console.log('ionViewWillEnter event fired')
+    }    
+
     render(){
+        
         return (
             <IonPage>
             <Widget.HeaderAndMenus/>
@@ -93,6 +102,7 @@ class Home extends Component{
                         </IonItem>
                     </div>
                 </IonContent>
+                <IonRouterOutlet id="home"></IonRouterOutlet> 
 
                 <IonButton hidden id="login" routerLink="/login"/>
                 <IonButton hidden id="upload" routerLink="/upload"/>
@@ -124,4 +134,4 @@ class Home extends Component{
 };
 
 
-export default Home;
+export default withIonLifeCycle(Home);

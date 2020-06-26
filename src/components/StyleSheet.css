@@ -26,3 +26,7 @@
 .itemHover:hover{
   background-color: red;
 }
+
+.secondary{
+  float: left;
+}

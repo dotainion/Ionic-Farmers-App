@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { IonPage, IonContent, IonItem, IonList, IonLabel, IonItemDivider, IonInput, IonButton, IonToolbar, IonTitle, IonToast, IonIcon } from '@ionic/react';
 import tools from '../components/FunctonTools'
 import axios from 'axios'
-import { grid  } from 'ionicons/icons';
+import { home  } from 'ionicons/icons';
 
 class Login extends Component{
     constructor(props){
@@ -33,11 +33,21 @@ class Login extends Component{
                         document.getElementById("upload-page").click();
                     }else if (page === "payment"){
                         document.getElementById("payment-page").click();
+                    }else if (page === "home"){
+                        document.getElementById("home-page").click();
+                    }else if (page === "transportation"){
+                        document.getElementById("transportation-page").click();
+                    }else if (page === "education"){
+                        document.getElementById("education-page").click();
+                    }else if (page === "dashbored"){
+                        document.getElementById("dashbored-page").click();
+                    }else if (page === "dashbored"){
+                        document.getElementById("dashbored-page").click();
                     }else{
-                        document.getElementById("back-to-product-page").click();
+                        document.getElementById("product-page").click();
                     }
                 }else{
-                    document.getElementById("back-to-product-page").click();
+                    document.getElementById("product-page").click();
                 }
             }else if (response.data === false){
                 this.toaststate = true;
@@ -85,7 +95,7 @@ class Login extends Component{
                     <IonItem color="primary">
                         <IonButton id="home" hidden routerLink="/home"/>
                         <IonTitle>{tools.appName}</IonTitle>
-                        <IonIcon onClick={()=>{document.getElementById("home").click()}} icon={grid}/>
+                        <IonIcon onClick={()=>{document.getElementById("home").click()}} icon={home}/>
                     </IonItem>
                 </IonToolbar>
                 <IonContent>
@@ -118,9 +128,13 @@ class Login extends Component{
                     <IonToast isOpen={this.toaststate} position="top" onDidDismiss={()=>{this.toaststate=false;this.setState({toaststate:false})}}
                     message={this.toastMsg} duration={2000}/>
                     
-                    <IonButton hidden id="back-to-product-page" routerLink="/products"/>
+                    <IonButton hidden id="product-page" routerLink="/products"/>
                     <IonButton hidden id="upload-page" routerLink="/upload"/>
                     <IonButton hidden id="payment-page" routerLink="/payment"/>
+                    <IonButton hidden id="home-page" routerLink="/home"/>
+                    <IonButton hidden id="education-page" routerLink="/education"/>
+                    <IonButton hidden id="dashboard-page" routerLink="/dashboard"/>
+                    <IonButton hidden id="transportation-page" routerLink="/transportation"/>
 
                 </IonContent>
             </IonPage>
